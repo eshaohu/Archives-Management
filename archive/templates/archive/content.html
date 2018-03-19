@@ -1,0 +1,18 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+   <div>
+      <h2 style="color: darkgrey;">{{ title }}</h2>
+   </div>
+   <div style="margin-left: 100px;padding-left: 120px;">
+      <a class="media" href="{{ location }}"></a>
+   </div>
+{% endblock %}
+{% block script %}
+    <script type="application/javascript" src="{% static 'jquery-3.2.1/jquery.media.js' %}"></script>
+{% endblock %}
+{% block js %}
+    $(function() {
+        $('a.media').media({width:1200, height:700});
+    });
+{% endblock %}

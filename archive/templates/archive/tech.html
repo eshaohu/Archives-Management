@@ -1,0 +1,74 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block link %}
+    <link rel="stylesheet" href="{% static 'DataTables-1.10.15/media/css/dataTables.jqueryui.css' %}">
+    <link rel="stylesheet" href="{% static 'DataTables-1.10.15/media/css/jquery.dataTables.css' %}">
+{% endblock %}
+{% block data-type %}widgets{% endblock %}
+{% block content %}
+        <div class="tpl-content-wrapper">
+            <div class="row-content am-cf">
+                <div class="row">
+                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                        <div class="widget am-cf">
+                            <div class="widget-head am-cf">
+                                <div class="widget-title  am-cf">科技档案
+                                    <a class="am-btn am-btn-success am-btn-xs" href="/archive/upload/?type={{ type }}" style="margin-left: 20px;">新增</a>
+                                </div>
+                            </div>
+                            <div class="widget-body  am-fr">
+                                <div class="am-u-sm-12">
+                                    <table width="100%" class="am-table am-table-compact am-table-striped tpl-table-black" id="tech-archives">
+                                        <thead>
+                                            <tr>
+                                                <th width="200" style="text-align: center;">文章标题</th>
+                                                <th width="100" >子类</th>
+                                                <th width="120" >时间</th>
+                                                <th width="100" style="display: none">内容</th>
+                                                <th width="150" >操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            {% for archive in techarchives %}
+                                            <tr class="gradeX" style="background-color: darkslategrey;">
+                                                <td>{{ archive.title }}</td>
+                                                <td>{{ archive.sub_classify }}</td>
+                                                <td>{{ archive.create_date }}</td>
+                                                <td style="display: none">蓝军切尔西客场对阵巴塞罗那</td>
+                                                <td>
+                                                    <div class="tpl-table-black-operation">
+                                                        <a href="/archive/content/?id={{ archive.id }}" >
+                                                            <i class="am-icon-arrows"></i> 预览
+                                                        </a>
+                                                        <a href="/archive/update_techarchive/?id={{ archive.id }}">
+                                                            <i class="am-icon-pencil"></i> 更新版本
+                                                        </a>
+                                                        <a href="/archive/delete/?id={{ archive.id }}" class="tpl-table-black-operation-del">
+                                                            <i class="am-icon-trash"></i> 删除
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            {% endfor %}
+                                            <!-- more data -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'DataTables-1.10.15/media/js/jquery.dataTables.js' %}"></script>
+    <script  src="{% static 'DataTables-1.10.15/media/js/dataTables.jqueryui.js' %}"></script>
+{% endblock %}
+{% block js %}
+    $('#tech-archives').DataTable({
+        language: {
+            url: "{% static 'json/DataTables.i18n.zh_cn.json' %}"
+        }
+    });
+{% endblock %}
