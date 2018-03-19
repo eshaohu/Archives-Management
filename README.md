@@ -10,7 +10,7 @@
 
 ### 主要网页示例
 
-![主页面](https://github.com/brownchenk/Archives-Management/blob/master/images/main2.jpg  =200X200)
+![主页面](https://github.com/brownchenk/Archives-Management/blob/master/images/main2.jpg  =200x200)
 ![档案列表展示](https://github.com/brownchenk/Archives-Management/blob/master/images/archivelist.JPG  =200X200)
 ![新增档案](https://github.com/brownchenk/Archives-Management/blob/master/images/add.JPG =200X200)
 ![日程管理](https://github.com/brownchenk/Archives-Management/blob/master/images/work.JPG =200X200)
