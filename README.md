@@ -9,10 +9,13 @@
 - 日程管理功能
 
 ### 主要网页示例
-
+主页面：
 ![主页面](https://github.com/brownchenk/Archives-Management/blob/master/images/main2.jpg)
+档案列表：
 ![档案列表展示](https://github.com/brownchenk/Archives-Management/blob/master/images/archivelist.JPG)
+上传档案：
 ![新增档案](https://github.com/brownchenk/Archives-Management/blob/master/images/add.JPG)
+日程管理：
 ![日程管理](https://github.com/brownchenk/Archives-Management/blob/master/images/work.JPG)
 
 ### 开发环境以及项目所用到的框架
