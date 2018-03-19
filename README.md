@@ -10,7 +10,7 @@
 
 ### 主要网页示例
 主页面：
-![主页面](https://github.com/brownchenk/Archives-Management/blob/master/images/main2.JPG)
+![主页面](https://github.com/brownchenk/Archives-Management/blob/master/images/main3.JPG)
 档案列表：
 ![档案列表展示](https://github.com/brownchenk/Archives-Management/blob/master/images/archivelist.JPG)
 上传档案：
