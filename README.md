@@ -8,7 +8,7 @@
 - 文档内容的全文搜索
 - 日程管理功能
 ### 开发环境以及项目所用到的框架
-**开发环境：**centos7.2(PyCharm)，mariadb-5.5.56, django1.11.6
+**开发环境**centos7.2(PyCharm)，mariadb-5.5.56, django1.11.6
 **html静态模板** [基于Amaze UI的后台管理模板](http://tpl.amazeui.org/content.html?21) 对妹子 UI表示感谢！
 **前端插件** jquery，jquery.medis.js, bootstrap, sweetalert, datatables, html模板自带的前端插件
 
