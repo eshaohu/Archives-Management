@@ -1,0 +1,59 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block data-type %}widgets{% endblock %}
+{% block content %}
+    <div class="tpl-content-wrapper">
+        <div class="row-content am-cf">
+                <div class="row">
+                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-12">
+                        <div class="widget am-cf">
+                            <div class="widget-head am-cf">
+                                <div class="widget-title am-fl">编辑用户信息</div>
+                                <div class="widget-function am-fr">
+                                    <a href="javascript:;" class="am-icon-cog"></a>
+                                </div>
+                            </div>
+                            <div class="widget-body am-fr">
+
+                                <form class="am-form tpl-form-border-form tpl-form-border-br" method="POST" action="{% url 'user:modify' %}" enctype="multipart/form-data" accept-charset="UTF-8">
+                                    {% csrf_token %}
+
+                                    <input type="hidden" name="id" value="{{ request.session.user.id }}">
+
+                                    <div class="am-form-group">
+                                        <label for="usernickname" class="am-u-sm-3 am-form-label">昵称 <span class="tpl-form-line-small-title">Nickname</span></label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input" id="usernickname" name="usernickname" placeholder="请输入您的昵称">
+                                            <small>来起一个好听的昵称吧</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="am-form-group">
+                                        <label for="userprofileimage" class="am-u-sm-3 am-form-label">头像 <span class="tpl-form-line-small-title">User Image</span></label>
+                                        <div class="am-u-sm-9">
+                                            <input type="file" class="am-form-field tpl-form-no-bg" id="userprofileimage" name="userprofileimage" placeholder="选择附件上传">
+                                            <small>推荐使用像素100X100的图片</small>
+                                        </div>
+                                    </div>
+
+                                    <div class="am-form-group">
+                                        <div class="am-u-sm-9 am-u-sm-push-3">
+                                            <button type="submit" class="am-btn am-btn-primary tpl-btn-bg-color-success ">提交</button>
+                                        </div>
+                                    </div>
+
+                                    <div class="am-form-group">
+                                        <label for="usernickname" class="am-u-sm-3 am-form-label"><span class="tpl-form-line-small-title"></span></label>
+                                        <div class="am-u-sm-9">
+                                            <input type="text" class="tpl-form-input"  placeholder="下次登录时生效" disabled>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        </div>
+    </div>
+{% endblock %}

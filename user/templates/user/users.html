@@ -1,0 +1,265 @@
+{% extends 'layout.html' %}
+{% block data-type %}index{% endblock %}
+{% block content %}
+           <div class="tpl-content-wrapper">
+            <div class="container-fluid am-cf">
+                <div class="row">
+                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-9">
+                        <div class="page-header-heading"><span class="am-icon-home page-header-heading-icon"></span> 系统首页 <small>Archives Management</small></div>
+                        <p class="page-header-description">Archives Management 含 2700 个行政档案 、含 2100 个科技档案 、含 1600 个总务档案 、更支持通过全文搜索查询您想要的档案信息，并以丰富的图表展示档案使用情况。</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row-content am-cf">
+                <div class="row  am-cf">
+{#                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-4">#}
+{#                        <div class="widget am-cf">#}
+{#                            <div class="widget-head am-cf">#}
+{#                                <div class="widget-title am-fl">月度财务收支计划</div>#}
+{#                                <div class="widget-function am-fr">#}
+{#                                    <a href="javascript:;" class="am-icon-cog"></a>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                            <div class="widget-body am-fr">#}
+{#                                <div class="am-fl">#}
+{#                                    <div class="widget-fluctuation-period-text">#}
+{#                                        ￥61746.45#}
+{#                                        <button class="widget-fluctuation-tpl-btn">#}
+{#                                            <i class="am-icon-calendar"></i>#}
+{#                                            更多月份#}
+{#                                        </button>#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                                <div class="am-fr am-cf">#}
+{#                                    <div class="widget-fluctuation-description-amount text-success" am-cf>#}
+{#                                        +￥30420.56#}
+{##}
+{#                                    </div>#}
+{#                                    <div class="widget-fluctuation-description-text am-text-right">#}
+{#                                        8月份收入#}
+{#                                    </div>#}
+{#                                </div>#}
+{#                            </div>#}
+{#                        </div>#}
+{##}
+{#                    </div>#}
+                    <div class="am-u-sm-12 am-u-md-6 am-u-lg-4">
+                        <div class="widget widget-purple am-cf">
+                            <div class="widget-statistic-header">
+                                本周行政类档案总数量
+                            </div>
+                            <div class="widget-statistic-body">
+                                <div class="widget-statistic-value">
+                                    2.7k
+                                </div>
+                                <div class="widget-statistic-description">
+                                    本周比本周新增 <strong>135</strong> 条档案。
+                                </div>
+                                <span class="widget-statistic-icon am-icon-credit-card-alt"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="am-u-sm-12 am-u-md-6 am-u-lg-4">
+                        <div class="widget widget-purple am-cf">
+                            <div class="widget-statistic-header">
+                                本周科技类档案总数量
+                            </div>
+                            <div class="widget-statistic-body">
+                                <div class="widget-statistic-value">
+                                    2.1k
+                                </div>
+                                <div class="widget-statistic-description">
+                                    本周比本周新增 <strong>9</strong> 条档案。
+                                </div>
+                                <span class="widget-statistic-icon am-icon-android"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="am-u-sm-12 am-u-md-6 am-u-lg-4">
+                        <div class="widget widget-purple am-cf">
+                            <div class="widget-statistic-header">
+                                本周总务类档案总数量
+                            </div>
+                            <div class="widget-statistic-body">
+                                <div class="widget-statistic-value">
+                                    1.6k
+                                </div>
+                                <div class="widget-statistic-description">
+                                    本周比本周新增 <strong>27</strong> 条档案。
+                                </div>
+                                <span class="widget-statistic-icon am-icon-amazon"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row am-cf">
+                    <div class="am-u-sm-12 am-u-md-8">
+                        <div class="widget am-cf">
+                            <div class="widget-head am-cf">
+                                <div class="widget-title am-fl">本周档案访问量统计</div>
+                                <div class="widget-function am-fr">
+                                    <a href="javascript:;" class="am-icon-cog"></a>
+                                </div>
+                            </div>
+                            <div class="widget-body-md widget-body tpl-amendment-echarts am-fr" id="tpl-echarts">
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="am-u-sm-12 am-u-md-4">
+                        <div class="widget am-cf">
+                            <div class="widget-head am-cf">
+                                <div class="widget-title am-fl">按类别统计访问量</div>
+                                <div class="widget-function am-fr">
+                                    <a href="javascript:;" class="am-icon-cog"></a>
+                                </div>
+                            </div>
+                            <div class="widget-body widget-body-md am-fr">
+
+                                <div class="am-progress-title">行政档案<span class="am-fr am-progress-title-more">25% / 100%</span></div>
+                                <div class="am-progress">
+                                    <div class="am-progress-bar" style="width: 25%"></div>
+                                </div>
+                                <div class="am-progress-title">科技档案<span class="am-fr am-progress-title-more">25% / 100%</span></div>
+                                <div class="am-progress">
+                                    <div class="am-progress-bar  am-progress-bar-warning" style="width: 25%"></div>
+                                </div>
+                                <div class="am-progress-title">总务档案<span class="am-fr am-progress-title-more">50% / 100%</span></div>
+                                <div class="am-progress">
+                                    <div class="am-progress-bar am-progress-bar-danger" style="width: 50%"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row am-cf">
+                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-4 widget-margin-bottom-lg ">
+                        <div class="tpl-user-card am-text-center widget-body-lg">
+                            <div class="tpl-user-card-title">
+                                陈凯
+                            </div>
+                            <div class="achievement-subheading">
+                                本周最活跃员工
+                            </div>
+                            <img class="achievement-image" src="/static/user_profile_picture/cat.jpg" alt="">
+                            <div class="achievement-description">
+                                陈凯在
+                                <strong>本周</strong> 在线预览或下载了
+                                <strong>37</strong>条档案。
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="am-u-sm-12 am-u-md-12 am-u-lg-8 widget-margin-bottom-lg">
+
+                        <div class="widget am-cf widget-body-lg">
+
+                            <div class="widget-body  am-fr">
+                                <div class="am-scrollable-horizontal ">
+                                    <table width="100%" class="am-table am-table-compact am-text-nowrap tpl-table-black " id="example-r">
+                                        <thead>
+                                            <tr>
+                                                <th>最近更新档案</th>
+                                                <th>作者</th>
+                                                <th>时间</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr class="gradeX">
+                                                <td>新加坡大数据初创公司 Latize 获 150 万美元风险融资</td>
+                                                <td>张鹏飞</td>
+                                                <td>2016-09-26</td>
+                                                <td>
+                                                    <div class="tpl-table-black-operation">
+                                                        <a href="javascript:;">
+                                                            <i class="am-icon-pencil"></i> 编辑
+                                                        </a>
+                                                        <a href="javascript:;" class="tpl-table-black-operation-del">
+                                                            <i class="am-icon-trash"></i> 删除
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="even gradeC">
+                                                <td>自拍的“政治角色”：观众背对希拉里自拍合影表示“支持”</td>
+                                                <td>天纵之人</td>
+                                                <td>2016-09-26</td>
+                                                <td>
+                                                    <div class="tpl-table-black-operation">
+                                                        <a href="javascript:;">
+                                                            <i class="am-icon-pencil"></i> 编辑
+                                                        </a>
+                                                        <a href="javascript:;" class="tpl-table-black-operation-del">
+                                                            <i class="am-icon-trash"></i> 删除
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="gradeX">
+                                                <td>关于创新管理，我想和你当面聊聊。</td>
+                                                <td>王宽师</td>
+                                                <td>2016-09-26</td>
+                                                <td>
+                                                    <div class="tpl-table-black-operation">
+                                                        <a href="javascript:;">
+                                                            <i class="am-icon-pencil"></i> 编辑
+                                                        </a>
+                                                        <a href="javascript:;" class="tpl-table-black-operation-del">
+                                                            <i class="am-icon-trash"></i> 删除
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="even gradeC">
+                                                <td>究竟是趋势带动投资，还是投资引领趋势？</td>
+                                                <td>着迷</td>
+                                                <td>2016-09-26</td>
+                                                <td>
+                                                    <div class="tpl-table-black-operation">
+                                                        <a href="javascript:;">
+                                                            <i class="am-icon-pencil"></i> 编辑
+                                                        </a>
+                                                        <a href="javascript:;" class="tpl-table-black-operation-del">
+                                                            <i class="am-icon-trash"></i> 删除
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr class="even gradeC">
+                                                <td>Docker领域再添一员，网易云发布“蜂巢”，加入云计算之争</td>
+                                                <td>醉里挑灯看键</td>
+                                                <td>2016-09-26</td>
+                                                <td>
+                                                    <div class="tpl-table-black-operation">
+                                                        <a href="javascript:;">
+                                                            <i class="am-icon-pencil"></i> 编辑
+                                                        </a>
+                                                        <a href="javascript:;" class="tpl-table-black-operation-del">
+                                                            <i class="am-icon-trash"></i> 删除
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
+
+                                            <!-- more data -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}

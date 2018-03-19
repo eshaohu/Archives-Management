@@ -1,0 +1,183 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block link %}
+    <link rel="stylesheet" href="{% static 'sweetalert/dist/sweetalert.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/fullcalendar.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/fullcalendar.print.css' %}" media='print' />
+{% endblock %}
+{% block data-type %}widgets{% endblock %}
+{% block content %}
+    <div class="tpl-content-wrapper">
+            <div class="row-content am-cf">
+                <div class="tpl-calendar-box">
+                    <div id="calendar">
+                    </div>
+                </div>
+
+            </div>
+    </div>
+
+        <div class="am-modal am-modal-no-btn" id="calendar-edit-box">
+        <div class="am-modal-dialog tpl-model-dialog">
+            <div class="am-modal-hd">
+                <a href="javascript: void(0)" class="am-close edit-box-close am-close-spin" data-am-modal-close>&times;</a>
+            </div>
+            <div class="am-modal-bd tpl-am-model-bd am-cf">
+
+                <form class="am-form tpl-form-border-form" action="#" method="POST">
+                    {% csrf_token %}
+                    <div class="am-form-group am-u-sm-12">
+                        <label for="content" class="am-u-sm-12 am-form-label am-text-left">标题 <span class="tpl-form-line-small-title">Title</span></label>
+                        <div class="am-u-sm-12">
+                            <input type="text" class="tpl-form-input am-margin-top-xs calendar-edit-box-title" id="content" placeholder="">
+                        </div>
+
+                        <div class="am-u-sm-12">
+                            <input type="hidden" class="tpl-form-input am-margin-top-xs calendar-edit-box-id" placeholder="">
+                        </div>
+
+                        <div class="am-u-sm-12" style="text-align: right;">
+                            <button type="button" class="am-btn am-btn-danger btn-del" data-dismiss="modal">删除</button>
+                            <button type="button" class="am-btn am-btn-success btn-save">保存</button>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            var editBox = $('#calendar-edit-box');
+            var uid  = {{ request.session.user.id }};
+            $('.edit-box-close').on('click', function() {
+                $('#calendar').fullCalendar('unselect');
+            })
+
+            $('#calendar').fullCalendar({
+
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,agendaWeek,agendaDay'
+                },
+
+                monthNames: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+                monthNamesShort: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+                dayNames: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+                dayNamesShort: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+                today: ["今天"],
+                firstDay: 1,
+                buttonText: {
+                    today: '本月',
+                    month: '月',
+                    week: '周',
+                    day: '日',
+                    prev: '上一月',
+                    next: '下一月'
+                },
+                defaultDate: '{{ time }}',
+                lang: 'zh-cn',
+                navLinks: true, // can click day/week names to navigate views
+                selectable: true,
+                selectHelper: true,
+                select: function(start, end) {
+                    swal({
+                      title: "Archives Management",
+                      text: "在此处填写你要记录的事",
+                      type: "input",
+                      showCancelButton: true,
+                      closeOnConfirm: false,
+                      animation: "slide-from-top",
+                      inputPlaceholder: "输入一些话..."
+                    },
+                    function(inputValue){
+                      if (inputValue === false) return false;
+
+                      if (inputValue === "") {
+                        swal.showInputError("你需要输入一些话！");
+                        return false
+                      }
+
+
+                      $.post("{% url 'user:MemoAdd' %}", {'user_id': uid, 'title': inputValue, 'startday': start.format(), 'endday': end.format()}, function(response){
+                            if (response['code'] == 200){
+                                swal({ title: "信息添加成功", type: "success", showCancelButton: false, confirmButtonText: "确定", closeOnConfirm: false }, function(){window.location.reload();});
+                            }
+                      }, 'json')
+
+
+
+
+                    });
+
+
+
+
+
+                },
+
+
+
+
+                editable: true,
+                eventLimit: true, // allow "more" link when too many events
+                eventClick: function(event, jsEvent, view) {
+
+                    // event.source.events[0].title = '222223333'
+                    // 修改数据
+                    // 标题
+                    $('.calendar-edit-box-id').val(event.id);
+                    $('.calendar-edit-box-title').val(event.title);
+
+
+
+                    editBox.modal();
+                },
+
+
+
+
+                // 数据区
+                events: [
+                    {% for memo in memos %}
+                    {
+                        id: {{ memo.id }},
+                        title: '{{ memo.title }}',
+                        start: '{{ memo.startday }}',
+                        end: '{{ memo.endday }}'
+                    },
+                    {% endfor %}
+                ]
+
+            });
+
+            $('button.btn-del').click(function(){
+              var id = $('.calendar-edit-box-id').val()
+              $.post("{% url 'user:MemoDel' %}", {'memo_id': id }, function(response){
+                    if (response['code'] == 200){
+                        swal({ title: "信息删除成功", type: "success", showCancelButton: false, confirmButtonText: "确定", closeOnConfirm: false }, function(){window.location.reload();});
+                    }
+              }, 'json')
+            });
+
+            $('button.btn-save').click(function(){
+              var id = $('.calendar-edit-box-id').val()
+              var title = $('.calendar-edit-box-title').val()
+
+              $.post("{% url 'user:MemoEdit' %}", {'memo_id': id, 'memo_title': title }, function(response){
+                    if (response['code'] == 200){
+                        swal({ title: "信息更新成功", type: "success", showCancelButton: false, confirmButtonText: "确定", closeOnConfirm: false }, function(){window.location.reload();});
+                    }
+              }, 'json')
+            });
+
+
+        });
+    </script>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'sweetalert/dist/sweetalert.min.js' %}"></script>
+{% endblock %}
